@@ -105,7 +105,7 @@
         </div>
 
         <div class="checkBoxDiv" *ngFor="let hobbies of hobbiesArray">
-          <input type="checkbox" formControlName="hobbies" class="checkBoxes" [value]="hobbies"> {{hobbies}}
+          <input type="checkbox" formControlName="hobbies" class="checkBoxes" [value]="hobbies" required> {{hobbies}}
         </div>
 
         <div class="errorMessageDiv" *ngIf="hobbies.errors && (hobbies.dirty || hobbies.touched)">
