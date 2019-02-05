@@ -1,0 +1,76 @@
+.mainFormDiv{
+    margin: 10px;
+    float: left;
+    border: 1px solid black
+}
+
+.headerDiv{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+.labels{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+fieldset{
+    border: hidden;
+}
+
+.otherDetailsDiv{
+    margin: 15px;
+}
+
+.form-group{
+    margin: 10px;
+}
+
+.textBox{
+    width: 300px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.radioButtons{
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.checkBoxDiv{
+    display: inline;
+}
+
+.checkBoxes{
+    margin-top: 10px;
+}
+
+.has-error{
+    border-color: red;
+}
+
+.has-success{
+    border-color: green; 
+}
+
+.errorMessageDiv{
+    color: red;
+}
+
+.buttonDiv{
+    margin: 10px;
+    margin-top: 30px;
+}
+
+.buttons{
+    width: 100px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 15px;
+}

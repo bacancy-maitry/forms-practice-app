@@ -1,0 +1,162 @@
+<div class="mainFormDiv">
+  <div class="headerDiv"> Model Driven Forms Example </div>
+  <form novalidate [formGroup]="formData" (ngSubmit)="submitForm()">
+    <!-- <pre> {{ formData.value | json }} </pre> -->
+    <!-- <p> Form Status::: {{ formData.status }} </p> -->
+
+    <!-- <pre> Password Dirty? {{ formData.controls.password.dirty }} </pre>
+    <pre> Password Pristine? {{ formData.controls.password.pristine }} </pre>
+    <pre> Password Touched? {{ formData.controls.password.touched }} </pre>
+    <pre> Password UnTouched? {{ formData.controls.password.untouched }} </pre>
+    <pre> Password Valid? {{ formData.controls.password.valid }} </pre>
+    <pre> Password Invalid? {{ formData.controls.password.invalid }} </pre> -->
+
+    <fieldset formGroupName="fullName">
+      <div class="form-group">
+        <div class="labels">
+          <label> First Name </label>
+        </div>
+
+        <div>
+          <input type="text" formControlName="firstName" class="textBox" [ngClass]="{
+              'has-error': firstName.invalid && (firstName.dirty || firstName.touched),
+              'has-success': firstName.valid && (firstName.dirty || firstName.touched) 
+            }">
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+          <p *ngIf="firstName.errors.required"> FirstName Is Required </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Last Name </label>
+        </div>
+
+        <div>
+          <input type="text" formControlName="lastName" class="textBox" [ngClass]="{
+              'has-error': lastName.invalid && (lastName.dirty || lastName.touched),
+              'has-success': lastName.valid && (lastName.dirty || lastName.touched) 
+            }">
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+          <p *ngIf="lastName.errors.required"> LastName Is Required </p>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="otherDetailsDiv">
+      <div class="form-group">
+        <div class="labels">
+          <label> Gender </label>
+        </div>
+
+        <div>
+          <input type="radio" formControlName="gender" class="radioButtons" value="male" /> Male
+          <input type="radio" formControlName="gender" class="radioButtons" value="female" /> Female
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="gender.errors && (gender.dirty || gender.touched)">
+          <p *ngIf="gender.errors.required"> Gender Is Required </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Email Id </label>
+        </div>
+
+        <div>
+          <input type="email" formControlName="email" class="textBox" [ngClass]="{
+                  'has-error': email.invalid && (email.dirty || email.touched),
+                  'has-success': email.valid && (email.dirty || email.touched) 
+                }">
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="email.errors && (email.dirty || email.touched)">
+          <p *ngIf="email.errors.required"> Email Is Required </p>
+          <p *ngIf="email.errors.pattern"> Email Is not valid </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Contact No </label>
+        </div>
+
+        <div>
+          <input type="text" formControlName="contactNo" class="textBox" [ngClass]="{
+                  'has-error': contactNo.invalid && (contactNo.dirty || contactNo.touched),
+                  'has-success': contactNo.valid && (contactNo.dirty || contactNo.touched) 
+                }">
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="contactNo.errors && (contactNo.dirty || contactNo.touched)">
+          <p *ngIf="contactNo.errors.required"> Contact No is Required </p>
+          <p *ngIf="contactNo.errors.pattern"> Enter only numeric value </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Hobbies </label>
+        </div>
+
+        <div class="checkBoxDiv" *ngFor="let hobbies of hobbiesArray">
+          <input type="checkbox" formControlName="hobbies" class="checkBoxes" [value]="hobbies"> {{hobbies}}
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="hobbies.errors && (hobbies.dirty || hobbies.touched)">
+          <p *ngIf="hobbies.errors.required"> Select at least one Hobbie </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Password </label>
+        </div>
+
+        <div>
+          <input type="password" formControlName="password" class="textBox" [ngClass]="{
+                  'has-error': password.invalid && (password.dirty || password.touched),
+                  'has-success': password.valid && (password.dirty || password.touched) 
+                }">
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="password.errors && (password.dirty || password.touched)">
+          <p *ngIf="password.errors.required">Password is required</p>
+          <p *ngIf="password.errors.minlength">Password must be {{password.errors.minlength.requiredLength}} characters
+            long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}}
+            characters </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Language </label>
+        </div>
+
+        <div>
+          <select formControlName="language" class="textBox" [ngClass]="{
+                  'has-error': language.invalid && (language.dirty || language.touched),
+                  'has-success': language.valid && (language.dirty || language.touched) 
+                }">
+            <option value=""> Please Select Language </option>
+            <option *ngFor="let language of languageArray" [value]="language"> {{language}} </option>
+          </select>
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="language.errors && (language.dirty || language.touched)">
+          <p *ngIf="language.errors.required"> Language Is Required </p>
+        </div>
+      </div>
+
+      <div class="buttonDiv">
+        <input type="submit" class="buttons" value="Submit">
+      </div>
+    </div>
+
+  </form>
+</div>

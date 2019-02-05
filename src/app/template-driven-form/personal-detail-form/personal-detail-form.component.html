@@ -1,0 +1,164 @@
+<div class="mainDiv">
+  <div class="headerDiv"> Template Driven Form </div>
+  <form novalidate #formData="ngForm" (ngSubmit)="addDetails(formData)">
+    <pre> {{ formData.value | json }} </pre>
+    <pre> {{ formData.controls.fullName?.value | json }} </pre>
+
+    <fieldset ngModelGroup="fullName">
+      <div class="form-group">
+        <div class="labels">
+          <label> First Name </label>
+        </div>
+
+        <input type="text" class="textBox" name="firstName" [(ngModel)]="formData.firstName" #firstNameData="ngModel"
+          required [ngClass]="{
+            'has-error': firstNameData.invalid && (firstNameData.dirty || firstNameData.touched),
+            'has-success': firstNameData.valid && (firstNameData.dirty || firstNameData.touched) 
+          }">
+
+        <div class="errorMessageDiv" *ngIf="firstNameData?.errors && (firstNameData?.dirty || firstNameData?.touched)">
+          <p *ngIf="firstNameData?.errors.required">First Name is required.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Last Name </label>
+        </div>
+
+        <input type="text" class="textBox" name="lastName" [(ngModel)]="formData.lastName" #lastNameData="ngModel"
+          required [ngClass]="{
+              'has-error': lastNameData.invalid && (lastNameData.dirty || lastNameData.touched),
+              'has-success': lastNameData.valid && (lastNameData.dirty || lastNameData.touched) 
+            }">
+
+        <div class="errorMessageDiv" *ngIf="lastNameData?.errors && (lastNameData?.dirty || lastNameData?.touched)">
+          <p *ngIf="lastNameData?.errors.required">Last Name is required.</p>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="otherDetailsDiv">
+      <div class="form-group">
+        <div class="labels">
+          <label> Gender </label>
+        </div>
+
+        <div>
+          <input type="radio" class="radioButtons" name="gender" [(ngModel)]="formData.gender" #genderData="ngModel"
+            value="male" required />
+          Male
+          <input type="radio" class="radioButtons" name="gender" [(ngModel)]="formData.gender" #genderData="ngModel"
+            value="female" />
+          Female
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="genderData.errors && (genderData.dirty || genderData.touched)">
+          <p *ngIf="genderData.errors.required"> Gender Is Required </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Email Id </label>
+        </div>
+
+        <div>
+          <input type="email" class="textBox" name="email" [(ngModel)]="formData.email" #emailData="ngModel" required
+            pattern="[^ @]*@[^ @]*" [ngClass]="{
+            'has-error': emailData.invalid && (emailData.dirty || emailData.touched),
+            'has-success': emailData.valid && (emailData.dirty || emailData.touched) 
+          }">
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="emailData.errors && (emailData.dirty || emailData.touched)">
+          <p *ngIf="emailData.errors.required"> Email Is Required </p>
+          <p *ngIf="emailData.errors.pattern"> Email Is not valid </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Contact No </label>
+        </div>
+
+        <div>
+          <input type="text" class="textBox" name="contactNo" [(ngModel)]="formData.contactNo" #contactNoData="ngModel"
+            required pattern="[0-9]*" [ngClass]="{
+                  'has-error': contactNoData.invalid && (contactNoData.dirty || contactNoData.touched),
+                  'has-success': contactNoData.valid && (contactNoData.dirty || contactNoData.touched) 
+                }">
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="contactNoData.errors && (contactNoData.dirty || contactNoData.touched)">
+          <p *ngIf="contactNoData.errors.required"> ContactNo is Required </p>
+          <p *ngIf="contactNoData.errors.pattern"> Enter only numeric value </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Hobbies </label>
+        </div>
+
+        <div class="checkBoxDiv" *ngFor="let hobbies of hobbiesArray">
+          <input type="checkbox" name="hobbies" [value]="hobbies" [ngModel]="formData.hobbies" required #hobbiesData="ngModel">
+          {{hobbies}}
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="hobbiesData?.errors && (hobbiesData?.dirty || hobbiesData?.touched)">
+          <p *ngIf="hobbiesData?.errors.required"> Select at least one Hobbie </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Password </label>
+        </div>
+
+        <div>
+          <input type="password" class="textBox" name="password" [(ngModel)]="formData.password" #passwordData="ngModel"
+            required minlength="8" [ngClass]="{
+                  'has-error': passwordData.invalid && (passwordData.dirty || passwordData.touched),
+                  'has-success': passwordData.valid && (passwordData.dirty || passwordData.touched) 
+                }">
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="passwordData.errors && (passwordData.dirty || passwordData.touched)">
+          <p *ngIf="passwordData.errors.required">Password is required</p>
+          <p *ngIf="passwordData.errors.minlength">Password must be {{passwordData.errors.minlength.requiredLength}}
+            characters
+            long, we need another {{passwordData.errors.minlength.requiredLength -
+            passwordData.errors.minlength.actualLength}}
+            characters </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="labels">
+          <label> Language </label>
+        </div>
+
+        <div>
+          <select class="dropDown" name="language" [(ngModel)]="formData.language" #languageData="ngModel" required
+            [ngClass]="{
+                  'has-error': languageData.invalid && (languageData.dirty || languageData.touched),
+                  'has-success': languageData.valid && (languageData.dirty || languageData.touched) 
+                }">
+            <option value=""> Please Select Language </option>
+            <option *ngFor="let language of languageArray" [value]="language"> {{language}} </option>
+          </select>
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="languageData.errors && (languageData.dirty || languageData.touched)">
+          <p *ngIf="languageData.errors.required"> Language Is Required </p>
+        </div>
+      </div>
+
+      <div class="buttonDiv">
+        <input type="submit" class="buttons" value="Submit" [disabled]="formData.invalid">
+      </div>
+    </div>
+
+  </form>
+</div>
