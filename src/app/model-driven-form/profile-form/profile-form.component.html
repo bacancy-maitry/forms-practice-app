@@ -1,8 +1,8 @@
 <div class="mainFormDiv">
   <div class="headerDiv"> Model Driven Forms Example </div>
   <form novalidate [formGroup]="formData" (ngSubmit)="submitForm()">
-    <!-- <pre> {{ formData.value | json }} </pre> -->
-    <!-- <p> Form Status::: {{ formData.status }} </p> -->
+    <!-- <pre> {{ formData.value | json }} </pre>
+    <p> Form Status::: {{ formData.status }} </p> -->
 
     <!-- <pre> Password Dirty? {{ formData.controls.password.dirty }} </pre>
     <pre> Password Pristine? {{ formData.controls.password.pristine }} </pre>
@@ -139,7 +139,7 @@
         </div>
 
         <div>
-          <select formControlName="language" class="textBox" [ngClass]="{
+          <select formControlName="language" class="dropDown" [ngClass]="{
                   'has-error': language.invalid && (language.dirty || language.touched),
                   'has-success': language.valid && (language.dirty || language.touched) 
                 }">
@@ -154,7 +154,8 @@
       </div>
 
       <div class="buttonDiv">
-        <input type="submit" class="buttons" value="Submit">
+        <input type="submit" class="buttons" value="Submit" [disabled]="formData.invalid">
+        <input type="reset" class="buttons" value="Cancel" [disabled]="formData.valid">
       </div>
     </div>
 
