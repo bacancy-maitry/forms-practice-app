@@ -1,0 +1,17 @@
+<h2>Employee Data</h2>
+
+<div>
+  <select name="empoyeeId" [(ngModel)] = "empoyeeId">
+    <option value="employee1"> Employee 1 </option>
+    <option value="employee2"> Employee 2 </option>
+    <option value="employee3"> Employee 3 </option>
+  </select>
+</div> 
+
+<!-- <div>
+  <input type="text" [(ngModel)]="cardNumber" placeholder="Card Number" />
+</div> -->
+
+<div>
+  <img width="100px" height="100px" appEmployee [empoyeeId] = "empoyeeId" >
+</div>
