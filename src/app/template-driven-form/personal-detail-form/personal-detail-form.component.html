@@ -101,10 +101,10 @@
           <label> Hobbies </label>
         </div>
 
-        <div class="checkBoxDiv" *ngFor="let hobbies of hobbiesArray">
+        <div class="checkBoxDiv" *ngFor="let hobbies of hobbiesArray, let i = index">
           <input type="checkbox" name="hobbies" class="checkBoxes" [value]="hobbies" [ngModel]="formData.hobbies"
             (ngModelChange)="formData.hobbies" #hobbiesInput="ngModel" required>
-          {{hobbies}}
+          {{hobbies}} 
         </div>
 
         <!-- <div class="errorMessageDiv" *ngIf="hobbiesInput?.dirty">
