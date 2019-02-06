@@ -1,11 +1,5 @@
-import { Directive, Input, HostBinding, SimpleChange, SimpleChanges } from '@angular/core';
-
-enum Cards {
-  VISA = "https://goo.gl/LGPfq1",
-  MASTERCARD = "https://goo.gl/MuURXJ",
-  RUPAYEE = "https://goo.gl/atT6om",
-  OTHER = "https://goo.gl/w1nXfy"
-};
+import { Directive, Input, HostBinding, SimpleChanges } from '@angular/core';
+import { EmployeeImages } from './employee-images.enum';
 
 @Directive({
   selector: '[appEmployee]'
@@ -13,8 +7,12 @@ enum Cards {
 
 export class EmployeeDirective {
 
-  @Input() empoyeeId: string;
+  // @Input() employeeId: string;
+  @Input() employeeIdData: number;
   @HostBinding('src') imageSource;
+  
+  // @Input() employeeName: string;
+  // @HostBinding('value') textBoxValue;
 
   constructor() { }
 
@@ -23,18 +21,18 @@ export class EmployeeDirective {
   }
 
   getEmployeeData() {
-    if (this.empoyeeId) {
-      if (this.empoyeeId == "employee1") {
-        return Cards.VISA;
-      } else if (this.empoyeeId == "employee2") {
-        return Cards.MASTERCARD;
-      } else if (this.empoyeeId == "employee3") {
-        return Cards.RUPAYEE
+    if (this.employeeIdData) {
+      if (this.employeeIdData == 101) {
+        return EmployeeImages.Employee1;
+      } else if (this.employeeIdData == 102) {
+        return EmployeeImages.Employee2;
+      } else if (this.employeeIdData == 103) {
+        return EmployeeImages.Employee3;
       } else {
-        return Cards.OTHER;
+        return EmployeeImages.Other;
       }
     } else {
-      return Cards.OTHER;
+      return EmployeeImages.Other;
     }
   }
 
