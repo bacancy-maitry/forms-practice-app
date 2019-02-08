@@ -7,7 +7,9 @@
     <select class="drop-down-data" name="employeeId" [(ngModel)]="employeeId">
       <option *ngFor="let employee of employeeArray" [value]="employee.id"> {{employee.name}} </option>
     </select>
-    <input type="radio" [value]="employee.id" [(ngModel)]="employeeId" name="employee"> {{employee.name}}
+    <div *ngFor="let employee of employeeArray">
+      <input type="radio" [value]="employee.id" [(ngModel)]="employeeId" name="employee"> {{employee.name}}
+    </div>
     <button class="buttons" *ngFor="let employee of employeeArray" [value]="employee" (click)="getEmployeeData(employee.id)"> {{employee.name}} </button>
   </div>
 
