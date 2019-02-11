@@ -10,7 +10,8 @@
     <div *ngFor="let employee of employeeArray">
       <input type="radio" [value]="employee.id" [(ngModel)]="employeeId" name="employee"> {{employee.name}}
     </div>
-    <button class="buttons" *ngFor="let employee of employeeArray" [value]="employee" (click)="getEmployeeData(employee.id)"> {{employee.name}} </button>
+    <button class="buttons" *ngFor="let employee of employeeArray" [value]="employee"
+      (click)="getEmployeeData(employee.id)"> {{employee.name}} </button>
   </div>
 
   <div class="image-div">
@@ -19,4 +20,9 @@
       <label class="label-data"> Employee Photo </label>
     </div>
   </div>
+</div>
+
+<div>
+  <p> Date is::: {{ today | date: 'dd/MM/yyyy' }} </p>
+  <p> Time is::: {{ today | date: 'HH:mm:ss' }} </p>
 </div>

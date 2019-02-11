@@ -21,7 +21,10 @@ export class EmployeeDataComponent implements OnInit {
 
   constructor() { }
 
+  today: number;
+
   ngOnInit() {
+    this.today = Date.now();
   }
 
 }
