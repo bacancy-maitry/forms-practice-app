@@ -1,8 +1,8 @@
 <div class="mainDiv">
   <div class="headerDiv"> Template Driven Form </div>
   <form novalidate #formData="ngForm" (ngSubmit)="addDetails()">
-    <!-- <pre> {{ formData.value | json }} </pre>
-    <pre> {{ formData.controls.fullName?.value | json }} </pre> -->
+    <pre> {{ formData.value | json }} </pre>
+    <!-- <pre> {{ formData.controls.fullName?.value | json }} </pre> -->
 
     <fieldset ngModelGroup="fullName">
       <div class="form-group">
@@ -106,11 +106,31 @@
             (ngModelChange)="formData.hobbies" #hobbiesInput="ngModel" required>
           {{hobbies}} 
         </div>
-
-        <!-- <div class="errorMessageDiv" *ngIf="hobbiesInput?.dirty">
+        
+        <div class="errorMessageDiv" *ngIf="hobbiesInput?.dirty">
           <p *ngIf="hobbiesInput?.errors.required"> Select at least one Hobbie </p>
-        </div> -->
+        </div>        
       </div>
+
+      <!-- <div class="form-group" ngModelGroup="hobbies">
+
+        <div class="labels">
+          <label> Hobbies </label>
+        </div>
+
+        <div class="checkBoxDiv">
+          <input type="checkbox" value="cricket" name="cricket" [(ngModel)]="cricket" #checkBoxData="ngModel" required>
+          Cricket
+          <input type="checkbox" value="writing" name="writing" [(ngModel)]="writing" #checkBoxData="ngModel" required>
+          Writing
+          <input type="checkbox" value="other" name="other" [(ngModel)]="other" #checkBoxData="ngModel" required> Other
+        </div>
+
+        <div class="errorMessageDiv" *ngIf="checkBoxData.errors && (checkBoxData.dirty || checkBoxData.touched)">
+          <p *ngIf="checkBoxData.errors.required"> Select at least one hobbie </p>
+        </div>
+
+      </div> -->
 
       <div class="form-group">
         <div class="labels">
@@ -118,8 +138,8 @@
         </div>
 
         <div>
-          <input type="password" class="textBox" name="password" [(ngModel)]="formData.password" #passwordInput="ngModel"
-            required minlength="8" [ngClass]="{
+          <input type="password" class="textBox" name="password" [(ngModel)]="formData.password"
+            #passwordInput="ngModel" required minlength="8" [ngClass]="{
                   'has-error': passwordInput.invalid && (passwordInput.dirty || passwordInput.touched),
                   'has-success': passwordInput.valid && (passwordInput.dirty || passwordInput.touched) 
                 }">
